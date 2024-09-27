@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tính UCLN</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input, button {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Tính UCLN của 2 số</h1>
+    
+    <div>
+        <input type="number" id="gcdA" placeholder="Nhập a">
+        <input type="number" id="gcdB" placeholder="Nhập b">
+        <button onclick="calculateGCD()">Tính UCLN</button>
+        <p id="gcdResult"></p>
+    </div>
+
+    <script>
+        function calculateGCD() {
+            const a = parseInt(document.getElementById("gcdA").value);
+            const b = parseInt(document.getElementById("gcdB").value);
+
+            if (isNaN(a) || isNaN(b) || a <= 0 || b <= 0) {
+                document.getElementById("gcdResult").innerText = "Vui lòng nhập hai số dương hợp lệ.";
+                return;
+            }
+
+            let gcd;
+            let tempA = a;
+            let tempB = b;
+
+            while (tempB !== 0) {
+                let temp = tempB;
+                tempB = tempA % tempB;
+                tempA = temp;
+            }
+            gcd = tempA;
+
+            document.getElementById("gcdResult").innerText = "UCLN: " + gcd;
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Các Tính Toán Cơ Bản</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input, button {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Các Tính Toán Cơ Bản</h1>
+
+    <div>
+        <h2>Tính tổng từ 1 đến n</h2>
+        <input type="number" id="sumN" placeholder="Nhập n">
+        <button onclick="calculateSum()">Tính tổng</button>
+        <p id="sumResult"></p>
+    </div>
+
+    <div>
+        <h2>Tính tổng số chẵn từ 1 đến n</h2>
+        <input type="number" id="evenSumN" placeholder="Nhập n">
+        <button onclick="calculateEvenSum()">Tính tổng chẵn</button>
+        <p id="evenSumResult"></p>
+    </div>
+
+    <div>
+        <h2>Tính tổng số lẻ từ 1 đến n</h2>
+        <input type="number" id="oddSumN" placeholder="Nhập n">
+        <button onclick="calculateOddSum()">Tính tổng lẻ</button>
+        <p id="oddSumResult"></p>
+    </div>
+
+    <div>
+        <h2>Kiểm tra n có phải số nguyên tố không?</h2>
+        <input type="number" id="primeN" placeholder="Nhập n">
+        <button onclick="checkPrime()">Kiểm tra</button>
+        <p id="primeResult"></p>
+    </div>
+
+    <div>
+        <h2>Tìm UCLN của 2 số a và b</h2>
+        <input type="number" id="gcdA" placeholder="Nhập a">
+        <input type="number" id="gcdB" placeholder="Nhập b">
+        <button onclick="calculateGCD()">Tính UCLN</button>
+        <p id="gcdResult"></p>
+    </div>
+
+    <script>
+        function calculateSum() {
+            const n = parseInt(document.getElementById("sumN").value);
+            let sum = 0;
+            for (let i = 1; i <= n; i++) {
+                sum += i;
+            }
+            document.getElementById("sumResult").innerText = "Tổng: " + sum;
+        }
+
+        function calculateEvenSum() {
+            const n = parseInt(document.getElementById("evenSumN").value);
+            let sum = 0;
+            for (let i = 2; i <= n; i += 2) {
+                sum += i;
+            }
+            document.getElementById("evenSumResult").innerText = "Tổng số chẵn: " + sum;
+        }
+
+        function calculateOddSum() {
+            const n = parseInt(document.getElementById("oddSumN").value);
+            let sum = 0;
+            for (let i = 1; i <= n; i += 2) {
+                sum += i;
+            }
+            document.getElementById("oddSumResult").innerText = "Tổng số lẻ: " + sum;
+        }
+
+        function checkPrime() {
+            const n = parseInt(document.getElementById("primeN").value);
+            let isPrime = true;
+            if (n < 2) isPrime = false;
+            for (let i = 2; i <= Math.sqrt(n); i++) {
+                if (n % i === 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+            document.getElementById("primeResult").innerText = isPrime ? n + " là số nguyên tố" : n + " không phải là số nguyên tố";
+        }
+
+        function calculateGCD() {
+            const a = parseInt(document.getElementById("gcdA").value);
+            const b = parseInt(document.getElementById("gcdB").value);
+            if (isNaN(a) || isNaN(b) || a < 1 || b < 1) {
+                document.getElementById("gcdResult").innerText = "Vui lòng nhập hai số dương hợp lệ.";
+                return;
+            }
+            let gcd;
+            while (b !== 0) {
+                let temp = b;
+                b = a % b;
+                a = temp;
+            }
+            gcd = a;
+            document.getElementById("gcdResult").innerText = "UCLN: " + gcd;
+        }
+    </script>
+
+</body>
+</html>
